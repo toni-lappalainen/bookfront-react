@@ -1,0 +1,16 @@
+{
+  "name": "bookfront-server",
+  "version": "0.0.1",
+  "description": "Server for Bookfront website",
+  "main": "./src/server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "epub": "^1.2.1",
+    "express": "^4.17.1"
+  }
+}
