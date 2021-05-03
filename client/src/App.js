@@ -34,12 +34,12 @@ export const App = () => {
   const columns = [
     {
       name: "Author",
-      selector: "authorName",
+      selector: "creator",
       sortable: false,
     },
     {
       name: "Book name",
-      selector: "name",
+      selector: "title",
       sortable: false,
     },
     {
@@ -49,8 +49,13 @@ export const App = () => {
     },
     {
       name: "Download",
-      selector: "download",
+      selector: "url",
       sortable: false,
+      cell: (row) => (
+        <div>
+          <a href={row.url}>Download</a>
+        </div>
+      ),
     },
   ];
 

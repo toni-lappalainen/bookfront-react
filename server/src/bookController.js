@@ -4,30 +4,30 @@ const EPub = require("epub");
 const baseUrl = "http://localhost:3100/";
 const directoryPath = __basedir + "/../res/books/";
 
-const createInfo = (book) => {
-  const epub = new EPub(
-    directoryPath + book,
-    "/imagewebroot/",
-    "/articlewebroot/",
-  );
-  epub.parse();
-  epub.on("error", function (err) {
-    console.log("ERROR\n-----");
-    throw err;
-  });
+const createInfo = async (book) => {
   return new Promise((resolve) => {
+    const epub = new EPub(
+      directoryPath + book,
+      "/imagewebroot/",
+      "/articlewebroot/",
+    );
+    epub.parse();
+    epub.on("error", function (err) {
+      console.log("ERROR\n-----");
+      throw err;
+    });
     epub.on("end", function () {
-      // epub is initialized now
-      console.log(epub.metadata.title);
-      const bookInfo = { title: epub.metadata.title };
-      console.log("p: " + bookInfo.title);
-      resolve(bookInfo.title);
+      const bookInfo = {
+        title: epub.metadata.title,
+        creator: epub.metadata.creator,
+      };
+      resolve(bookInfo);
     });
   });
 };
 
-const getBookList = async (req, res) => {
-  fs.readdir(directoryPath, (err, books) => {
+const getBookList = (req, res) => {
+  fs.readdir(directoryPath, async (err, books) => {
     if (err) {
       res.status(500).send({
         message: "Unable to scan files!",
@@ -37,16 +37,15 @@ const getBookList = async (req, res) => {
 
     let bookInfos = [];
 
-    books.forEach(async (book) => {
-      let title = await createInfo(book);
+    for (const book of books) {
+      const info = await createInfo(book);
       bookInfos.push({
-        name: book,
-        url: baseUrl + book,
-        title: title,
+        creator: info.creator,
+        title: info.title,
+        url: baseUrl + "books/" + book,
       });
-    });
+    }
 
-    console.log(bookInfos);
     res.status(200).send(bookInfos);
   });
 };
