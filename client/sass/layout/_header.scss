@@ -1,0 +1,49 @@
+/*
+.header {
+    height: 35vh;
+    background-image: linear-gradient(to right,
+      rgba(237, 217, 163, 0.8),
+      rgba(132, 108, 91, 0.8)),
+      url(../img/hero.jpg);
+    background-size: cover;
+    background-position: top;
+    position: relative;
+    clip-path: polygon(0 0, 100% 0, 100% 25vh, 0 100%)
+}
+*/
+.header {
+  height: 90vh;
+  background-image: linear-gradient(to right,
+      rgba($color-primary-light, 0.8),
+      rgba($color-primary, 0.8)),
+    url(../img/herohalf.jpg);
+  background-size: cover;
+  background-position: top;
+  position: relative;
+
+  clip-path: polygon(0 0, 100% 0, 100% 100%, 50% 80%, 0 100%);
+
+  &__logo-box {
+    position: absolute;
+    top: 3rem;
+    left: 3rem;
+  }
+
+  &__logo {
+    height: 10rem;
+    animation-name: fadeIn;
+    animation-duration: 2s;
+
+    @include respond(phone) {
+      height: 6rem;
+    }
+  }
+
+  &__text-box {
+    position: absolute;
+    top: 30%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+  }
+}

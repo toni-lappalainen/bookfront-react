@@ -59,6 +59,15 @@ module.exports = {
   module: {
     rules: [
       {
+        test: /\.(jpe?g|png|gif|svg)$/,
+        use: [
+          {
+            loader: "file-loader",
+            options: {},
+          },
+        ],
+      },
+      {
         test: /\.(jsx|js)$/,
         include: path.resolve(__dirname, "src"),
         exclude: /node_modules/,
@@ -69,7 +78,8 @@ module.exports = {
         ],
       },
       {
-        test: /\.scss$/,
+        test: /\.(sa|sc|c)ss$/,
+        include: path.resolve(__dirname, "src/css"),
         use: ["style-loader", "css-loader", "sass-loader"],
       },
     ],

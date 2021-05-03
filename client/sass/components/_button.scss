@@ -1,0 +1,58 @@
+
+.btn {
+  &:link,
+  &:visited {
+    text-transform: uppercase;
+    text-decoration: none;
+    padding: 1.5rem 4rem;
+    display: inline-block;
+    border-radius: 10rem;
+    transition: all 0.2s;
+    /* position set to relative, so other button elements will get their position from here */
+    position: relative;
+    font-size: 1.6rem;
+  }
+
+  &:hover {
+    transform: translateY(-.3rem);
+    box-shadow: 0 1rem 2rem rgba($color-black, 0.2);
+
+    &::after {
+      transform: scaleX(1.1) scaleY(1.4);
+      opacity: 0;
+    }
+  }
+
+  &:active {
+    transform: translateY(-.1rem);
+    box-shadow: 0 0.5rem 1rem rgba($color-black, 0.2);
+  }
+
+  &--lightbrown {
+    background-color: #edd9a3;
+    color: $color-grey-dark;
+
+    &::after {
+      background-color: #edd9a3;
+    }
+  }
+
+  &::after {
+    /* content needs to be specifiend, but it can be empty like here */
+    content: "";
+    display: inline-block;
+    height: 100%;
+    width: 100%;
+    border-radius: 10rem;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    transition: all 0.4s;
+  }
+
+  &--animated {
+    animation: fadeIn 0.8s ease-in 0.15s;
+    animation-fill-mode: backwards;
+  }
+}

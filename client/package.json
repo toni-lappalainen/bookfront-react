@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "start": "NODE_ENV='development' webpack serve",
-    "build": "NODE_ENV='production' webpack"
+    "build": "NODE_ENV='production' webpack",
+    "compile:sass": "node-sass sass/main.scss src/css/style.css -w"
   },
   "author": "Toni Lappalainen",
   "license": "MIT",
@@ -19,6 +20,7 @@
     "babel-preset-react": "^6.24.1",
     "css-loader": "^5.2.2",
     "dotenv": "^8.2.0",
+    "file-loader": "^6.2.0",
     "html-webpack-plugin": "^5.3.1",
     "node-sass": "^5.0.0",
     "prettier": "^2.2.1",
