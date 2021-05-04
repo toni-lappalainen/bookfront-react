@@ -232,3 +232,9 @@ body {
     left: 50%;
     transform: translate(-50%, -50%);
     text-align: center; }
+
+.section-about {
+  padding: 8rem 15rem; }
+  @media (max-width: 56.25em) {
+    .section-about {
+      padding: 4rem 5rem; } }

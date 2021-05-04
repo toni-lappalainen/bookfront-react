@@ -1,0 +1,7 @@
+.section-about {
+    padding: 8rem 15rem;
+
+    @include respond(tab-port) {
+        padding: 4rem 5rem;
+    }
+}
