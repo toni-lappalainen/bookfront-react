@@ -40,5 +40,8 @@ body {
 
 /* removes the outline around links */
 a {
-  outline: 0;
+// outline: 0;
+  &:link {
+    color: pink;
+  }
 }

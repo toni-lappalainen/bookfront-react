@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import DataTable from "react-data-table-component";
+import DataTable, { createTheme } from "react-data-table-component";
 import axios from "axios";
 
 const url = "http://localhost:3100/";
@@ -35,15 +35,15 @@ export const App = () => {
     {
       name: "Author",
       selector: "creator",
-      sortable: false,
+      sortable: true,
     },
     {
       name: "Book name",
       selector: "title",
-      sortable: false,
+      sortable: true,
     },
     {
-      name: "Date added",
+      name: "Read in browser",
       selector: "added",
       sortable: false,
     },
@@ -59,22 +59,48 @@ export const App = () => {
     },
   ];
 
+  createTheme("books", {
+    text: {
+      primary: "#edd9a3",
+      secondary: "#cea07e",
+    },
+    background: {
+      default: "#000",
+    },
+    context: {
+      background: "#cb4b16",
+      text: "#FFFFFF",
+    },
+    divider: {
+      default: "#846c5b",
+    },
+    action: {
+      button: "rgba(255,255,255,.5)",
+      hover: "rgba(255,255,255,.5)",
+      disabled: "rgba(255,255,255,.6)",
+    },
+    sortFocus: {
+      default: "#cea07e",
+    },
+  });
+
   const renderTable = () => {
     if (books === null) return <DataTable progressPending noHeader />;
     else
       return (
         <DataTable
           title="Books"
+          theme="books"
           columns={columns}
           data={books}
-          defaultSortField="added"
+          defaultSortField="author"
           pagination
           highlightOnHovers
           dense
           noHeader
-          striped
-          selectableRows
-          selectableRowsHighlight
+          // striped
+          // selectableRows
+          // selectableRowsHighlight
           onSelectedRowsChange={(e) => changeSelected(e)}
         />
       );
