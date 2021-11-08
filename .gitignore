@@ -3,6 +3,8 @@ logs
 *.log
 npm-debug.log*
 
+dist/
+
 # Runtime data
 pids
 *.pid
@@ -19,7 +21,7 @@ node_modules/
 .npm
 
 # dotenv environment variables file
-.env
+config.env
 .env.test
 
 # parcel-bundler cache (https://parceljs.org/)

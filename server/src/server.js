@@ -1,22 +1,10 @@
-const cors = require("cors");
-const express = require("express");
+const dotenv = require('dotenv');
+const app = require('./app');
 
-global.__basedir = __dirname;
+dotenv.config({ path: '/config.env' });
 
-//=== ROUTERS ===
-const bookRouter = require("./bookRoutes");
+const port = process.env.PORT || 3222;
 
-const app = express();
-
-app.use(cors());
-app.options("*", cors());
-
-// === MIDDLEWARE ===
-app.use(express.json());
-
-// === ROUTES ===
-app.use("/books", bookRouter);
-
-app.listen(3100, function () {
-  console.log("listening on 3100");
+app.listen(port, () => {
+	console.log(`App running on port ${port}.`);
 });

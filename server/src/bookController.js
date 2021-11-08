@@ -1,65 +1,69 @@
-const fs = require("fs");
-const EPub = require("epub");
+const fs = require('fs');
+const EPub = require('epub');
 
-const baseUrl = "http://localhost:3100/";
-const directoryPath = __basedir + "/../res/books/";
+const port = process.env.PORT | 3222;
+const dev = process.env.NODE_ENV !== 'production';
+const baseUrl = dev ? `http://localhost:${port}/` : process.env.URL;
+
+const directoryPath = __dirname + '/../res/books/';
+console.log(directoryPath);
 
 const createInfo = async (book) => {
-  return new Promise((resolve) => {
-    const epub = new EPub(
-      directoryPath + book,
-      "/imagewebroot/",
-      "/articlewebroot/",
-    );
-    epub.parse();
-    epub.on("error", function (err) {
-      console.log("ERROR\n-----");
-      throw err;
-    });
-    epub.on("end", function () {
-      const bookInfo = {
-        title: epub.metadata.title,
-        creator: epub.metadata.creator,
-      };
-      resolve(bookInfo);
-    });
-  });
+	return new Promise((resolve) => {
+		const epub = new EPub(
+			directoryPath + book,
+			'/imagewebroot/',
+			'/articlewebroot/'
+		);
+		epub.parse();
+		epub.on('error', function (err) {
+			console.log('ERROR\n-----');
+			throw err;
+		});
+		epub.on('end', function () {
+			const bookInfo = {
+				title: epub.metadata.title,
+				creator: epub.metadata.creator,
+			};
+			resolve(bookInfo);
+		});
+	});
 };
 
 const getBookList = (req, res) => {
-  fs.readdir(directoryPath, async (err, books) => {
-    if (err) {
-      res.status(500).send({
-        message: "Unable to scan files!",
-      });
-      return;
-    }
+	fs.readdir(directoryPath, async (err, books) => {
+		if (err) {
+			res.status(500).send({
+				message: 'Unable to scan files!',
+			});
+			return;
+		}
 
-    let bookInfos = [];
+		let bookInfos = [];
 
-    for (const book of books) {
-      const info = await createInfo(book);
-      bookInfos.push({
-        creator: info.creator,
-        title: info.title,
-        url: baseUrl + "books/" + book,
-      });
-    }
+		for (const book of books) {
+			const info = await createInfo(book);
+			bookInfos.push({
+				creator: info.creator,
+				title: info.title,
+				url: baseUrl + 'api/v1/books/' + book,
+			});
+		}
 
-    res.status(200).send(bookInfos);
-  });
+		res.status(200).send(bookInfos);
+	});
 };
 
 const downloadBook = (req, res) => {
-  const bookName = req.params.name;
+	const bookName = req.params.name;
 
-  res.download(directoryPath + bookName, bookName, (err) => {
-    if (err) {
-      res.status(500).send({
-        message: "Could not download the file. " + err,
-      });
-    }
-  });
+	res.download(directoryPath + bookName, bookName, (err) => {
+		if (err) {
+			res.status(500).send({
+				message: 'Could not download the file. ' + err,
+			});
+		}
+	});
 };
 
 module.exports = { getBookList, downloadBook };

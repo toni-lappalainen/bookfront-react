@@ -1,16 +1,18 @@
 {
-  "name": "bookfront-server",
-  "version": "0.0.1",
-  "description": "Server for Bookfront website",
-  "main": "./src/server.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "author": "",
-  "license": "ISC",
-  "dependencies": {
-    "cors": "^2.8.5",
-    "epub": "^1.2.1",
-    "express": "^4.17.1"
-  }
+	"name": "bookfront-server",
+	"version": "0.3.0",
+	"description": "Server for Bookfront website",
+	"main": "./src/server.js",
+	"scripts": {
+		"start:dev": "nodemon server.js",
+		"start:prod": "NODE_ENV=production nodemon server.js"
+	},
+	"author": "Toni Lappalainen",
+	"license": "MIT",
+	"dependencies": {
+		"cors": "^2.8.5",
+		"dotenv": "^10.0.0",
+		"epub": "^1.2.1",
+		"express": "^4.17.1"
+	}
 }

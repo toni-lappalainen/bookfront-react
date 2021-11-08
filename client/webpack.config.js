@@ -29,7 +29,7 @@ const devServer = () => {
 	if (process.env.NODE_ENV === 'development') {
 		return {
 			devServer: {
-				static: './dist',
+				//static: './dist',
 				open: false,
 				port: 9000,
 			},
