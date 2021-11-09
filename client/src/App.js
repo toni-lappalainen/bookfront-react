@@ -2,13 +2,15 @@ import React, { useEffect, useState } from 'react';
 import DataTable, { createTheme } from 'react-data-table-component';
 import axios from 'axios';
 
+// Creates and adds the Book list table on the page.
+
 //const dev = process.env.NODE_ENV !== 'production';
 //const url = dev ? `http://localhost:3222/api/v1/` : process.env.REACT_APP_URL;
 const url = 'http://localhost:3222/api/v1/';
 
 //const url = process.env.REACT_APP_URL;
 console.log(url);
-export const App = () => {
+const App = () => {
 	const [books, setBooks] = useState(null);
 
 	// Get list of books in server
@@ -104,13 +106,11 @@ export const App = () => {
 					highlightOnHovers
 					dense
 					noHeader
-					// striped
-					// selectableRows
-					// selectableRowsHighlight
-					onSelectedRowsChange={(e) => changeSelected(e)}
 				/>
 			);
 	};
 
 	return <div>{renderTable()}</div>;
 };
+
+export default App;

@@ -63,7 +63,7 @@ a:link {
   color: white; }
 
 body {
-  font-family: "Lato", sans-serif;
+  font-family: 'Lato', sans-serif;
   font-weight: 400;
   font-size: 1.6rem;
   line-height: 1.7;
@@ -97,7 +97,7 @@ body {
     @media (max-width: 37.5em) {
       .heading-primary--sub {
         font-size: 1.5rem;
-        letter-spacing: .5rem; } }
+        letter-spacing: 0.5rem; } }
 
 .heading-secondary {
   font-size: 2.5rem;
@@ -107,7 +107,7 @@ body {
   background-image: linear-gradient(to right, #edd9a3, #846c5b);
   -webkit-background-clip: text;
   color: transparent;
-  letter-spacing: .3rem; }
+  letter-spacing: 0.3rem; }
   @media (max-width: 56.25em) {
     .heading-secondary {
       font-size: 2rem; } }
@@ -218,11 +218,23 @@ body {
   .header__logo-box {
     position: absolute;
     top: 3rem;
-    left: 3rem; }
+    left: 3rem;
+    height: 10rem;
+    width: 10rem;
+    animation-name: fadeIn;
+    animation-duration: 2s;
+    background-image: url(../img/logo-black.png);
+    background-size: contain;
+    background-repeat: no-repeat; }
+    @media (max-width: 37.5em) {
+      .header__logo-box {
+        height: 6rem; } }
   .header__logo {
     height: 10rem;
     animation-name: fadeIn;
-    animation-duration: 2s; }
+    animation-duration: 2s;
+    background-image: url(../img/logo_book.png);
+    background-size: cover; }
     @media (max-width: 37.5em) {
       .header__logo {
         height: 6rem; } }

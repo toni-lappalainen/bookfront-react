@@ -12,38 +12,51 @@
 }
 */
 .header {
-  height: 60vh;
-  background-image: linear-gradient(to right,
-      rgba($color-primary-light, 0.8),
-      rgba($color-primary, 0.8)),
-    url(../img/herohalf.jpg);
-  background-size: cover;
-  background-position: top;
-  position: relative;
+	height: 60vh;
+	background-image: linear-gradient(
+			to right,
+			rgba($color-primary-light, 0.8),
+			rgba($color-primary, 0.8)
+		),
+		url(../img/herohalf.jpg);
+	background-size: cover;
+	background-position: top;
+	position: relative;
 
-  clip-path: polygon(0 0, 100% 0, 100% 100%, 50% 80%, 0 100%);
+	clip-path: polygon(0 0, 100% 0, 100% 100%, 50% 80%, 0 100%);
 
-  &__logo-box {
-    position: absolute;
-    top: 3rem;
-    left: 3rem;
-  }
+	&__logo-box {
+		position: absolute;
+		top: 3rem;
+		left: 3rem;
+		height: 10rem;
+		width: 10rem;
+		animation-name: fadeIn;
+		animation-duration: 2s;
+		background-image: url(../img/logo-black.png);
+		background-size: contain;
+		background-repeat: no-repeat;
+		@include respond(phone) {
+			height: 6rem;
+		}
+	}
 
-  &__logo {
-    height: 10rem;
-    animation-name: fadeIn;
-    animation-duration: 2s;
+	&__logo {
+		height: 10rem;
+		animation-name: fadeIn;
+		animation-duration: 2s;
+		background-image: url(../img/logo_book.png);
+		background-size: cover;
+		@include respond(phone) {
+			height: 6rem;
+		}
+	}
 
-    @include respond(phone) {
-      height: 6rem;
-    }
-  }
-
-  &__text-box {
-    position: absolute;
-    top: 30%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    text-align: center;
-  }
+	&__text-box {
+		position: absolute;
+		top: 30%;
+		left: 50%;
+		transform: translate(-50%, -50%);
+		text-align: center;
+	}
 }
