@@ -4,12 +4,11 @@ import axios from 'axios';
 
 // Creates and adds the Book list table on the page.
 
-//const dev = process.env.NODE_ENV !== 'production';
-//const url = dev ? `http://localhost:3222/api/v1/` : process.env.REACT_APP_URL;
-const url = 'http://localhost:3222/api/v1/';
+const dev = process.env.NODE_ENV !== 'production';
+const url = dev
+	? `http://localhost:3222/`
+	: 'https://myrrys.fi/bookfront-api/v1/';
 
-//const url = process.env.REACT_APP_URL;
-console.log(url);
 const App = () => {
 	const [books, setBooks] = useState(null);
 

@@ -2,6 +2,7 @@
 	"name": "bookfront-client",
 	"version": "0.4.0",
 	"private": true,
+	"homepage": "https://myrrys.fi/bookfront",
 	"dependencies": {
 		"@testing-library/jest-dom": "^5.15.0",
 		"@testing-library/react": "^11.2.7",
