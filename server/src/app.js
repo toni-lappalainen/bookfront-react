@@ -12,6 +12,6 @@ app.use(express.json());
 // ROUTERS
 const bookRouter = require('./bookRoutes');
 
-app.use('/api/v1/books', bookRouter);
+app.use('/books', bookRouter);
 
 module.exports = app;

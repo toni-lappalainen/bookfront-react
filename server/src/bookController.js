@@ -1,13 +1,16 @@
 const fs = require('fs');
+const path = require('path');
 const EPub = require('epub');
 
+// TODO: local url is different
 const port = process.env.PORT | 3222;
 const dev = process.env.NODE_ENV !== 'production';
 const baseUrl = dev ? `http://localhost:${port}/` : process.env.URL;
 
-const directoryPath = __dirname + '/../res/books/';
+const directoryPath = path.join(__dirname, '/../res/books/');
 console.log(directoryPath);
 
+// Creates the info for individual book
 const createInfo = async (book) => {
 	return new Promise((resolve) => {
 		const epub = new EPub(
@@ -30,6 +33,7 @@ const createInfo = async (book) => {
 	});
 };
 
+// returns the list of books in the server and creates infos for them
 const getBookList = (req, res) => {
 	fs.readdir(directoryPath, async (err, books) => {
 		if (err) {
@@ -46,7 +50,7 @@ const getBookList = (req, res) => {
 			bookInfos.push({
 				creator: info.creator,
 				title: info.title,
-				url: baseUrl + 'api/v1/books/' + book,
+				url: baseUrl + 'bookfront-api/v1/books/' + book,
 			});
 		}
 
@@ -54,6 +58,7 @@ const getBookList = (req, res) => {
 	});
 };
 
+// Download individual book
 const downloadBook = (req, res) => {
 	const bookName = req.params.name;
 
